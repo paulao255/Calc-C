@@ -18,7 +18,7 @@
 #define GG_CALCULATOR_PATCH_VERSION 0    /* GG Calculator patch version variable (0).    */
 
 /* Main code: */
-int main()
+int main(void)
 {
 	/* Local variables: */
 	char loop1 = 1;                  /* First loop variable.                         */
@@ -133,7 +133,7 @@ int main()
 			n[1] = strtold(sn[1], NULL);
 		}
 
-		CLEAR_TERMINAL();
+		clear_terminal();
 
 		if(strcmp(operator, "+") == 0)
 		{
@@ -167,7 +167,7 @@ int main()
 
 		else if(strcmp(operator, "//") == 0)
 		{
-			result = powl(n[0], 1.0 / n[1]);
+			result = powl(n[0], 1.0L / n[1]);
 			printf("%.*Lf %1s %.*Lf = %.*Lf\n", precision, n[0], operator, precision, n[1], precision, result);
 		}
 
