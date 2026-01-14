@@ -3,31 +3,31 @@
 #define GG_CALCULATOR_C
 
 /* Importations: */
+#define IMPORT_MATH_UTILS
 #include "C-Utils/cutils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define __USE_GNU
 #include <math.h>
 
 
 /* GG Calculator version variables: */
-#define GG_CALCULATOR_FULL_VERSION  210  /* GG Calculator full version variable (2.1.0). */
-#define GG_CALCULATOR_MAJOR_VERSION 2    /* GG Calculator major version variable (2).    */
-#define GG_CALCULATOR_MINOR_VERSION 1    /* GG Calculator minor version variable (1).    */
-#define GG_CALCULATOR_PATCH_VERSION 0    /* GG Calculator patch version variable (0).    */
+#define GG_CALCULATOR_FULL_VERSION  202601014 /* GG Calculator full version variable (2026/01/14). */
+#define GG_CALCULATOR_MAJOR_VERSION 2026      /* GG Calculator major version variable (2026).      */
+#define GG_CALCULATOR_MINOR_VERSION 01        /* GG Calculator minor version variable (01).        */
+#define GG_CALCULATOR_PATCH_VERSION 14        /* GG Calculator patch version variable (14).        */
 
 /* Main code: */
 int main(void)
 {
 	/* Local variables: */
-	char loop1 = 1;                  /* First loop variable.                         */
-	int precision = 6;               /* Precision number variable.                   */
-	long double n[2] = {0.0L, 0.0L}; /* Long double numbers variable.                */
-	long double result = 0;          /* Result number variable.                      */
-	char sn[2][8192] = {"", ""};     /* String numbers string variable.              */
-	char operator[8192] = "";        /* Operator variable.                           */
-	char sprecision[8192] = "";      /* Precision string variable.                   */
+	char loop1 = 1;                       /* First loop variable.                              */
+	int precision = 6;                    /* Precision number variable.                        */
+	long double n[2] = {0.0L, 0.0L};      /* Long double numbers variable.                     */
+	long double result = 0;               /* Result number variable.                           */
+	char sn[2][8192] = {"", ""};          /* String numbers string variable.                   */
+	char operator[8192] = "";             /* Operator variable.                                */
+	char sprecision[8192] = "";           /* Precision string variable.                        */
 
 	/* Commands before main loop: */
 	clear_terminal();
@@ -35,7 +35,7 @@ int main(void)
 	/* Main loop: */
 	while(loop1 == 1)
 	{
-		fputs("GG Calculator: ", stdout);
+		fputs("Calc: ", stdout);
 		scanf("%8191s", sn[0]);
 
 		if(strcmp(sn[0], "3.14159") == 0 || strcmp(sn[0], "3,14159") == 0)
@@ -70,7 +70,7 @@ int main(void)
 
 		else if(strcmp(sn[0], "pi") == 0)
 		{
-			n[0] = M_PIl;
+			n[0] = PI_LD;
 		}
 
 		else if(strcmp(sn[0], "precision") == 0)
@@ -117,7 +117,7 @@ int main(void)
 
 		else if(strcmp(sn[1], "pi") == 0)
 		{
-			n[1] = M_PIl;
+			n[1] = PI_LD;
 		}
 
 		else if(strcmp(sn[1], "precision") == 0)
