@@ -12,10 +12,10 @@
 
 
 /* GG Calculator version variables: */
-#define GG_CALCULATOR_FULL_VERSION  202601014 /* GG Calculator full version variable (2026/01/14). */
+#define GG_CALCULATOR_FULL_VERSION  202601019 /* GG Calculator full version variable (2026/01/19). */
 #define GG_CALCULATOR_MAJOR_VERSION 2026      /* GG Calculator major version variable (2026).      */
 #define GG_CALCULATOR_MINOR_VERSION 01        /* GG Calculator minor version variable (01).        */
-#define GG_CALCULATOR_PATCH_VERSION 14        /* GG Calculator patch version variable (14).        */
+#define GG_CALCULATOR_PATCH_VERSION 19        /* GG Calculator patch version variable (19).        */
 
 /* Main code: */
 int main(void)
