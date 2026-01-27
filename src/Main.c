@@ -1,7 +1,3 @@
-/* Include guard: */
-#ifndef GG_CALCULATOR_C
-#define GG_CALCULATOR_C
-
 /* Importations: */
 #define IMPORT_MATH_UTILS
 #include "C-Utils/cutils.h"
@@ -181,6 +177,3 @@ int main(void)
 
 	return 0;
 }
-
-/* End code: */
-#endif
