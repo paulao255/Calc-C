@@ -14,14 +14,14 @@
 /* GG Calculator version variables: */
 #define GG_CALCULATOR_FULL_VERSION  202601019 /* GG Calculator full version variable (2026/01/19). */
 #define GG_CALCULATOR_MAJOR_VERSION 2026      /* GG Calculator major version variable (2026).      */
-#define GG_CALCULATOR_MINOR_VERSION 01        /* GG Calculator minor version variable (01).        */
+#define GG_CALCULATOR_MINOR_VERSION 1        /* GG Calculator minor version variable (01).        */
 #define GG_CALCULATOR_PATCH_VERSION 19        /* GG Calculator patch version variable (19).        */
 
 /* Main code: */
 int main(void)
 {
 	/* Local variables: */
-	char loop1 = 1;                       /* First loop variable.                              */
+	int loop1 = 1;                       /* First loop variable.                              */
 	int precision = 6;                    /* Precision number variable.                        */
 	long double n[2] = {0.0L, 0.0L};      /* Long double numbers variable.                     */
 	long double result = 0;               /* Result number variable.                           */
