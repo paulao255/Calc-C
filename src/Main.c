@@ -1,6 +1,6 @@
 /* Importations: */
-#define IMPORT_MATH_UTILS
 #include "C-Utils/cutils.h"
+#include "C-Utils/mutils.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,25 +8,22 @@
 
 
 /* GG Calculator version variables: */
-#define GG_CALCULATOR_FULL_VERSION  202601019 /* GG Calculator full version variable (2026/01/19). */
-#define GG_CALCULATOR_MAJOR_VERSION 2026      /* GG Calculator major version variable (2026).      */
-#define GG_CALCULATOR_MINOR_VERSION 1        /* GG Calculator minor version variable (01).        */
-#define GG_CALCULATOR_PATCH_VERSION 19        /* GG Calculator patch version variable (19).        */
+#define GG_CALCULATOR_FULL_VERSION 20260223L /* GG Calculator full version variable (2026/02/22). */
 
 /* Main code: */
-int main(void)
+const int main(const int argc, const char **const argv)
 {
 	/* Local variables: */
 	int loop1 = 1;                       /* First loop variable.                              */
-	int precision = 6;                    /* Precision number variable.                        */
-	long double n[2] = {0.0L, 0.0L};      /* Long double numbers variable.                     */
-	long double result = 0;               /* Result number variable.                           */
-	char sn[2][8192] = {"", ""};          /* String numbers string variable.                   */
-	char operator[8192] = "";             /* Operator variable.                                */
-	char sprecision[8192] = "";           /* Precision string variable.                        */
+	int precision = 6;                   /* Precision number variable.                        */
+	double n[2];                         /* double numbers variable.                     */
+	double result;                       /* Result number variable.                           */
+	char sn[2][8192];                    /* String numbers string variable.                   */
+	char operator[8192];                 /* Operator variable.                                */
+	char sprecision[8192];               /* Precision string variable.                        */
 
 	/* Commands before main loop: */
-	clear_terminal();
+	clear_stdout();
 
 	/* Main loop: */
 	while(loop1 == 1)
@@ -36,12 +33,12 @@ int main(void)
 
 		if(strcmp(sn[0], "3.14159") == 0 || strcmp(sn[0], "3,14159") == 0)
 		{
-			clear_terminal();
+			clear_stdout();
 			easter_egg_function();
-			clear_terminal();
+			clear_stdout();
 			fputs("GG Calculator: ", stdout);
 			scanf("%8191s", sn[0]);
-			n[0] = strtold(sn[0], NULL);
+			n[0] = strtod(sn[0], NULL);
 		}
 
 		else if(strcmp(sn[0], "exit") == 0 || strcmp(sn[0], "break") == 0)
@@ -53,10 +50,10 @@ int main(void)
 		else if(strcmp(sn[0], "help") == 0)
 		{
 			puts("Syntax: <first number/action> <operator/action> <second number/action>.");
-			printf("Actions: \"lr\" = last result (current: %Lf). \"precision\" = change precision, syntax: <precision> <precision new value>. \"exit/break\" or \"Ctrl + C\" = exit. \"help\" = show this help info.\n", result);
+			printf("Actions: \"lr\" = last result (current: %lf). \"precision\" = change precision, syntax: <precision> <precision new value>. \"exit/break\" or \"Ctrl + C\" = exit. \"help\" = show this help info.\n", result);
 			fputs("GG Calculator: ", stdout);
 			scanf("%8191s", sn[0]);
-			n[0] = strtold(sn[0], NULL);
+			n[0] = strtod(sn[0], NULL);
 		}
 
 		else if(strcmp(sn[0], "lr") == 0)
@@ -66,7 +63,7 @@ int main(void)
 
 		else if(strcmp(sn[0], "pi") == 0)
 		{
-			n[0] = PI_LD;
+			n[0] = PI_D;
 		}
 
 		else if(strcmp(sn[0], "precision") == 0)
@@ -75,12 +72,12 @@ int main(void)
 			precision = atoi(sprecision);
 			fputs("GG Calculator: ", stdout);
 			scanf("%8191s", sn[0]);
-			n[0] = strtold(sn[0], NULL);
+			n[0] = strtod(sn[0], NULL);
 		}
 
 		else
 		{
-			n[0] = strtold(sn[0], NULL);
+			n[0] = strtod(sn[0], NULL);
 		}
 
 		scanf("%8191s", operator);
@@ -113,7 +110,7 @@ int main(void)
 
 		else if(strcmp(sn[1], "pi") == 0)
 		{
-			n[1] = PI_LD;
+			n[1] = PI_D;
 		}
 
 		else if(strcmp(sn[1], "precision") == 0)
@@ -121,57 +118,58 @@ int main(void)
 			scanf("%8191s", sprecision);
 			precision = atoi(sprecision);
 			scanf("%8191s", sn[1]);
-			n[1] = strtold(sn[1], NULL);
+			n[1] = strtod(sn[1], NULL);
 		}
 
 		else
 		{
-			n[1] = strtold(sn[1], NULL);
+			n[1] = strtod(sn[1], NULL);
 		}
 
-		clear_terminal();
+		clear_stdout();
 
 		if(strcmp(operator, "+") == 0)
 		{
 			result = n[0] + n[1];
-			printf("%.*Lf %1s %.*Lf = %.*Lf\n", precision, n[0], operator, precision, n[1], precision, result);
+			printf("%.*lf %1s %.*lf = %.*lf\n", precision, n[0], operator, precision, n[1], precision, result);
 		}
 
 		else if(strcmp(operator, "-") == 0)
 		{
 			result = n[0] - n[1];
-			printf("%.*Lf %1s %.*Lf = %.*Lf\n", precision, n[0], operator, precision, n[1], precision, result);
+			printf("%.*lf %1s %.*lf = %.*lf\n", precision, n[0], operator, precision, n[1], precision, result);
 		}
 
 		else if(strcmp(operator, "*") == 0)
 		{
 			result = n[0] * n[1];
-			printf("%.*Lf %1s %.*Lf = %.*Lf\n", precision, n[0], operator, precision, n[1], precision, result);
+			printf("%.*lf %1s %.*lf = %.*lf\n", precision, n[0], operator, precision, n[1], precision, result);
 		}
 
 		else if(strcmp(operator, "**") == 0)
 		{
-			result = powl(n[0], n[1]);
-			printf("%.*Lf %1s %.*Lf = %.*Lf\n", precision, n[0], operator, precision, n[1], precision, result);
+			result = pow(n[0], n[1]);
+			printf("%.*lf %1s %.*lf = %.*lf\n", precision, n[0], operator, precision, n[1], precision, result);
 		}
 
 		else if(strcmp(operator, "/") == 0)
 		{
 			result = n[0] / n[1];
-			printf("%.*Lf %1s %.*Lf = %.*Lf\n", precision, n[0], operator, precision, n[1], precision, result);
+			printf("%.*lf %1s %.*lf = %.*lf\n", precision, n[0], operator, precision, n[1], precision, result);
 		}
 
 		else if(strcmp(operator, "//") == 0)
 		{
-			result = powl(n[0], 1.0L / n[1]);
-			printf("%.*Lf %1s %.*Lf = %.*Lf\n", precision, n[0], operator, precision, n[1], precision, result);
+			result = pow(n[0], 1.0L / n[1]);
+			printf("%.*lf %1s %.*lf = %.*lf\n", precision, n[0], operator, precision, n[1], precision, result);
 		}
 
 		else
 		{
 			puts("Operation error!");
-			petc();
-			clear_terminal();
+			fputs("Press any key to continue...", stdout);
+			scan_char();
+			clear_stdout();
 		}
 	}
 
