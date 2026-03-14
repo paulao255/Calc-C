@@ -2,7 +2,7 @@ PROGRAM_NAME = Ccalc
 
 all:
 	@if [ ! -d "build" ]; then mkdir -p build; fi
-	cd build && cmake .. -G Ninja && ninja
+	cd build && git clone https://github.com/paulao255/C-Utils.git && mkdir bin && gcc -I./C-Utils/include ../src/Main.c ./C-Utils/include/C-Utils/cutils.c -lm -std=c90 -fdiagnostics-color=always -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Wformat=2 -Wnull-dereference -Wstrict-prototypes -Wmissing-prototypes -Wcast-align -Wpointer-arith -Wundef -v -O3 -funroll-loops -flto -mtune=native -march=native -fPIE -pie -fstack-protector-all -o bin/$(PROGRAM_NAME)
 
 run: all
 ifeq ($(OS),Windows_NT)
