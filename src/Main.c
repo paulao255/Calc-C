@@ -11,10 +11,10 @@
 int main(void)
 {
 	/* Local variables: */
-	int loop1 = 1;                       /* First loop variable.                              */
+	unsigned char loop1 = 1;             /* First loop variable.                              */
 	int precision = 6;                   /* Precision number variable.                        */
-	double n[2];                         /* double numbers variable.                          */
-	double result;                       /* Result number variable.                           */
+	double n[2] = {0, 0};                /* double numbers variable.                          */
+	double result = 0.0;                 /* Result number variable.                           */
 	char sn[2][8192];                    /* String numbers string variable.                   */
 	char operator[8192];                 /* Operator variable.                                */
 	char sprecision[8192];               /* Precision string variable.                        */
@@ -23,7 +23,7 @@ int main(void)
 	clear_stdout();
 
 	/* Main loop: */
-	while(loop1 == 1)
+	while(loop1 == 1u)
 	{
 		fputs("Calc: ", stdout);
 		scanf("%8191s", *(sn));
@@ -44,8 +44,6 @@ int main(void)
 		else if(strcmp(*(sn), "exit") == 0 || strcmp(*(sn), "break") == 0)
 		{
 			--loop1;
-
-			break;
 		}
 
 		else if(strcmp(*(sn), "help") == 0)
@@ -53,8 +51,6 @@ int main(void)
 			puts("Syntax: <first number/action> <operator/action> <second number/action>.");
 			printf("Actions: \"lr\"|\"ans\" = last result (current: %f). \"precision\" = change precision, syntax: <precision> <precision new value>. \"exit/break\" or \"Ctrl + C\" = exit. \"help\" = show this help info.\n", result);
 			fputs("GG Calculator: ", stdout);
-			scanf("%8191s", *(sn));
-			*(n) = strtod(*(sn), NULL);
 		}
 
 		else if(strcmp(*(sn), "lr") == 0 || strcmp(*(sn), "ans") == 0)
@@ -81,13 +77,14 @@ int main(void)
 			*(n) = strtod(*(sn), NULL);
 		}
 
-		scanf("%8191s", operator);
+		if(loop1)
+		{
+			scanf("%8191s", operator);
+		}
 
 		if(strcmp(operator, "exit") == 0 || strcmp(operator, "break") == 0)
 		{
 			--loop1;
-
-			break;
 		}
 
 		else if(strcmp(operator, "precision") == 0)
@@ -97,13 +94,14 @@ int main(void)
 			scanf("%8191s", operator);
 		}
 
-		scanf("%8191s", *(sn + 1));
+		if(loop1)
+		{
+			scanf("%8191s", *(sn + 1));
+		}
 
 		if(strcmp(*(sn + 1), "exit") == 0 || strcmp(*(sn + 1), "break") == 0)
 		{
 			--loop1;
-
-			break;
 		}
 
 		else if(strcmp(*(sn + 1), "lr") == 0 || strcmp(*(sn + 1), "ans") == 0)
@@ -175,6 +173,8 @@ int main(void)
 			clear_stdout();
 		}
 	}
+
+	clear_stdout();
 
 	return 0;
 }
