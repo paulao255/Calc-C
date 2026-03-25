@@ -29,9 +29,9 @@ int main(void)
 		fputs("Calc: ", stdout);
 
 		/* sn1 scan/code: */
-		scanf("%8191s", *(sn));
+		fscanf(stdin, "%8191s", *sn);
 
-		if(strcmp(*(sn), "3.14159") == 0 || strcmp(*(sn), "3,14159") == 0)
+		if(strcmp(*sn, "3.14159") == 0 || strcmp(*sn, "3,14159") == 0)
 		{
 			clear_stdout();
 
@@ -40,16 +40,16 @@ int main(void)
 			clear_stdout();
 
 			fputs("GG Calculator: ", stdout);
-			scanf("%8191s", *(sn));
-			*(n) = strtod(*(sn), NULL);
+			fscanf(stdin, "%8191s", *sn);
+			*n = strtod(*sn, NULL);
 		}
 
-		else if(strcmp(*(sn), "exit") == 0 || strcmp(*(sn), "break") == 0)
+		else if(strcmp(*sn, "exit") == 0 || strcmp(*sn, "break") == 0)
 		{
 			--loop1;
 		}
 
-		else if(strcmp(*(sn), "help") == 0)
+		else if(strcmp(*sn, "help") == 0)
 		{
 			clear_stdout();
 			fputs("Syntax: <first number/action> <operator/action> <second number/action>.\n", stdout);
@@ -62,34 +62,34 @@ int main(void)
 			has_error = 1u;
 		}
 
-		else if(strcmp(*(sn), "lr") == 0 || strcmp(*(sn), "ans") == 0)
+		else if(strcmp(*sn, "lr") == 0 || strcmp(*sn, "ans") == 0)
 		{
-			*(n) = result;
+			*n = result;
 		}
 
-		else if(strcmp(*(sn), "pi") == 0)
+		else if(strcmp(*sn, "pi") == 0)
 		{
-			*(n) = M_PI;
+			*n = M_PI;
 		}
 
-		else if(strcmp(*(sn), "precision") == 0)
+		else if(strcmp(*sn, "precision") == 0)
 		{
-			scanf("%8191s", sprecision);
+			fscanf(stdin, "%8191s", sprecision);
 			precision = atoi(sprecision);
 			fputs("GG Calculator: ", stdout);
-			scanf("%8191s", *(sn));
-			*(n) = strtod(*(sn), NULL);
+			fscanf(stdin, "%8191s", *sn);
+			*n = strtod(*sn, NULL);
 		}
 
 		else
 		{
-			*(n) = strtod(*(sn), NULL);
+			*n = strtod(*sn, NULL);
 		}
 
 		/* Operator scan/code: */
 		if(loop1 && has_error == 0u)
 		{
-			scanf("%8191s", operator);
+			fscanf(stdin, "%8191s", operator);
 		}
 
 		if(strcmp(operator, "exit") == 0 || strcmp(operator, "break") == 0)
@@ -99,15 +99,15 @@ int main(void)
 
 		else if(strcmp(operator, "precision") == 0)
 		{
-			scanf("%8191s", sprecision);
+			fscanf(stdin, "%8191s", sprecision);
 			precision = atoi(sprecision);
-			scanf("%8191s", operator);
+			fscanf(stdin, "%8191s", operator);
 		}
 
 		/* sn2 scan/code: */
 		if(loop1 && has_error == 0u)
 		{
-			scanf("%8191s", *(sn + 1));
+			fscanf(stdin, "%8191s", *(sn + 1));
 		}
 
 		if(strcmp(*(sn + 1), "exit") == 0 || strcmp(*(sn + 1), "break") == 0)
@@ -127,9 +127,9 @@ int main(void)
 
 		else if(strcmp(*(sn + 1), "precision") == 0)
 		{
-			scanf("%8191s", sprecision);
+			fscanf(stdin, "%8191s", sprecision);
 			precision = atoi(sprecision);
-			scanf("%8191s", *(sn + 1));
+			fscanf(stdin, "%8191s", *(sn + 1));
 			*(n + 1) = strtod(*(sn + 1), NULL);
 		}
 
@@ -145,44 +145,44 @@ int main(void)
 		{
 			if(strcmp(operator, "+") == 0)
 			{
-				result = *(n) + *(n + 1);
-				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *(n), operator, precision, *(n + 1), precision, result);
+				result = *n + *(n + 1);
+				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
 			}
 
 			else if(strcmp(operator, "-") == 0)
 			{
-				result = *(n) - *(n + 1);
-				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *(n), operator, precision, *(n + 1), precision, result);
+				result = *n - *(n + 1);
+				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
 			}
 
 			else if(strcmp(operator, "*") == 0)
 			{
-				result = *(n) * *(n + 1);
-				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *(n), operator, precision, *(n + 1), precision, result);
+				result = *n * *(n + 1);
+				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
 			}
 
 			else if(strcmp(operator, "**") == 0 || strcmp(operator, "^") == 0)
 			{
-				result = pow(*(n), *(n + 1));
-				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *(n), operator, precision, *(n + 1), precision, result);
+				result = pow(*n, *(n + 1));
+				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
 			}
 
 			else if(strcmp(operator, "/") == 0 || strcmp(operator, "÷") == 0)
 			{
-				result = *(n) / *(n + 1);
-				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *(n), operator, precision, *(n + 1), precision, result);
+				result = *n / *(n + 1);
+				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
 			}
 
 			else if(strcmp(operator, "%") == 0)
 			{
-				result = fmod(*(n), *(n + 1));
-				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *(n), operator, precision, *(n + 1), precision, result);
+				result = fmod(*n, *(n + 1));
+				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
 			}
 
 			else if(strcmp(operator, "//") == 0 || strcmp(operator, "√") == 0)
 			{
-				result = pow(*(n), 1.0 / *(n + 1));
-				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *(n), operator, precision, *(n + 1), precision, result);
+				result = pow(*n, 1.0 / *(n + 1));
+				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *n, operator, precision, *(n + 1), precision, result);
 			}
 
 			else
