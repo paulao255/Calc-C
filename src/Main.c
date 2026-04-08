@@ -34,9 +34,7 @@ int main(void)
 		if(strcmp(*sn, "3.14159") == 0 || strcmp(*sn, "3,14159") == 0)
 		{
 			clear_stdout();
-
 			easter_egg_function();
-
 			clear_stdout();
 
 			fputs("GG Calculator: ", stdout);
@@ -44,7 +42,7 @@ int main(void)
 			*n = strtod(*sn, NULL);
 		}
 
-		else if(strcmp(*sn, "exit") == 0 || strcmp(*sn, "break") == 0)
+		else if(strcmp(*sn, "exit") == 0 || strcmp(*sn, "break") == 0 || strcmp(*sn, "quit") == 0)
 		{
 			--loop1;
 		}
@@ -54,7 +52,7 @@ int main(void)
 			clear_stdout();
 			fputs("Syntax: <first number/action> <operator/action> <second number/action>.\n", stdout);
 			fprintf(stdout, "Actions: [lr|ans] = last result (current: %f). [precision] = change precision, syntax: <precision> <precision new value>. [exit|break] or [Ctrl + C] = exit. [help] = show this help info.\n", result);
-			fputs("Available operators: [+|-|*|/|%|**|//].\n", stdout);
+			fputs("Available operators: [ + | - | * | / | % | ** | // ].\n", stdout);
 			fputs("Press any key to continue...", stdout);
 			fflush(stdout);
 			clear_stdin();
@@ -67,7 +65,7 @@ int main(void)
 			*n = result;
 		}
 
-		else if(strcmp(*sn, "pi") == 0)
+		else if(strcmp(*sn, "pi") == 0 || strcmp(*sn, "π") == 0)
 		{
 			*n = M_PI;
 		}
@@ -92,7 +90,7 @@ int main(void)
 			fscanf(stdin, "%8191s", operator);
 		}
 
-		if(strcmp(operator, "exit") == 0 || strcmp(operator, "break") == 0)
+		if(strcmp(operator, "exit") == 0 || strcmp(operator, "break") == 0 || strcmp(operator, "quit") == 0)
 		{
 			--loop1;
 		}
@@ -110,7 +108,7 @@ int main(void)
 			fscanf(stdin, "%8191s", *(sn + 1));
 		}
 
-		if(strcmp(*(sn + 1), "exit") == 0 || strcmp(*(sn + 1), "break") == 0)
+		if(strcmp(*(sn + 1), "exit") == 0 || strcmp(*(sn + 1), "break") == 0 || strcmp(*(sn + 1), "quit") == 0)
 		{
 			--loop1;
 		}
@@ -120,7 +118,7 @@ int main(void)
 			*(n + 1) = result;
 		}
 
-		else if(strcmp(*(sn + 1), "pi") == 0)
+		else if(strcmp(*(sn + 1), "pi") == 0 || strcmp(*(sn + 1), "π") == 0)
 		{
 			*(n + 1) = M_PI;
 		}
@@ -161,12 +159,6 @@ int main(void)
 				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
 			}
 
-			else if(strcmp(operator, "**") == 0 || strcmp(operator, "^") == 0)
-			{
-				result = pow(*n, *(n + 1));
-				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
-			}
-
 			else if(strcmp(operator, "/") == 0 || strcmp(operator, "÷") == 0)
 			{
 				result = *n / *(n + 1);
@@ -179,10 +171,28 @@ int main(void)
 				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
 			}
 
-			else if(strcmp(operator, "//") == 0 || strcmp(operator, "√") == 0)
+			else if(strcmp(operator, "^") == 0)
+			{
+				result = pow(*n, *(n + 1));
+				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
+			}
+
+			else if(strcmp(operator, "√") == 0)
 			{
 				result = pow(*n, 1.0 / *(n + 1));
-				fprintf(stdout, "%.*f %1s %.*f = %.*f\n", precision, *n, operator, precision, *(n + 1), precision, result);
+				fprintf(stdout, "%.*f %c %.*f = %.*f\n", precision, *n, *operator, precision, *(n + 1), precision, result);
+			}
+
+			else if(strcmp(operator, "**") == 0)
+			{
+				result = pow(*n, *(n + 1));
+				fprintf(stdout, "%.*f %2s %.*f = %.*f\n", precision, *n, operator, precision, *(n + 1), precision, result);
+			}
+
+			else if(strcmp(operator, "//") == 0)
+			{
+				result = pow(*n, 1.0 / *(n + 1));
+				fprintf(stdout, "%.*f %2s %.*f = %.*f\n", precision, *n, operator, precision, *(n + 1), precision, result);
 			}
 
 			else
