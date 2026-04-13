@@ -21,7 +21,7 @@ int main(void)
 	char sprecision[8192];            /* Precision string variable.                        */
 
 	/* Commands before main loop: */
-	clear_stdout();
+	c_utils_clear_stdout();
 
 	/* Main loop: */
 	while(loop1 == 1u)
@@ -31,32 +31,21 @@ int main(void)
 		/* sn1 scan/code: */
 		fscanf(stdin, "%8191s", *sn);
 
-		if(strcmp(*sn, "3.14159") == 0 || strcmp(*sn, "3,14159") == 0)
-		{
-			clear_stdout();
-			easter_egg_function();
-			clear_stdout();
-
-			fputs("GG Calculator: ", stdout);
-			fscanf(stdin, "%8191s", *sn);
-			*n = strtod(*sn, NULL);
-		}
-
-		else if(strcmp(*sn, "exit") == 0 || strcmp(*sn, "break") == 0 || strcmp(*sn, "quit") == 0)
+		if(strcmp(*sn, "exit") == 0 || strcmp(*sn, "break") == 0 || strcmp(*sn, "quit") == 0)
 		{
 			--loop1;
 		}
 
 		else if(strcmp(*sn, "help") == 0)
 		{
-			clear_stdout();
+			c_utils_clear_stdout();
 			fputs("Syntax: <first number/action> <operator/action> <second number/action>.\n", stdout);
 			fprintf(stdout, "Actions: [lr|ans] = last result (current: %f). [precision] = change precision, syntax: <precision> <precision new value>. [exit|break] or [Ctrl + C] = exit. [help] = show this help info.\n", result);
 			fputs("Available operators: [ + | - | * | / | % | ** | // ].\n", stdout);
 			fputs("Press any key to continue...", stdout);
 			fflush(stdout);
-			clear_stdin();
-			scan_char();
+			c_utils_clear_stdin();
+			c_utils_scan_char();
 			has_error = 1u;
 		}
 
@@ -136,7 +125,7 @@ int main(void)
 			*(n + 1) = strtod(*(sn + 1), NULL);
 		}
 
-		clear_stdout();
+		c_utils_clear_stdout();
 
 		/* Calculate the results: */
 		if(!has_error)
@@ -199,8 +188,8 @@ int main(void)
 			{
 				fputs("Operation error!\n", stdout);
 				fputs("Press any key to continue...\n", stdout);
-				scan_char();
-				clear_stdout();
+				c_utils_scan_char();
+				c_utils_clear_stdout();
 			}
 		}
 
@@ -210,7 +199,7 @@ int main(void)
 		}
 	}
 
-	clear_stdout();
+	c_utils_clear_stdout();
 
 	return 0;
 }
