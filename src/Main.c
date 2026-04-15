@@ -45,7 +45,7 @@ int main(void)
 			fputs("Press any key to continue...", stdout);
 			fflush(stdout);
 			c_utils_clear_stdin();
-			c_utils_scan_char();
+			c_utils_scan_character();
 			has_error = 1u;
 		}
 
@@ -56,7 +56,7 @@ int main(void)
 
 		else if(strcmp(*sn, "pi") == 0 || strcmp(*sn, "π") == 0)
 		{
-			*n = M_PI;
+			*n = C_UTILS_M_PI;
 		}
 
 		else if(strcmp(*sn, "precision") == 0)
@@ -109,7 +109,7 @@ int main(void)
 
 		else if(strcmp(*(sn + 1), "pi") == 0 || strcmp(*(sn + 1), "π") == 0)
 		{
-			*(n + 1) = M_PI;
+			*(n + 1) = C_UTILS_M_PI;
 		}
 
 		else if(strcmp(*(sn + 1), "precision") == 0)
@@ -188,7 +188,7 @@ int main(void)
 			{
 				fputs("Operation error!\n", stdout);
 				fputs("Press any key to continue...\n", stdout);
-				c_utils_scan_char();
+				c_utils_scan_character();
 				c_utils_clear_stdout();
 			}
 		}

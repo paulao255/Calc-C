@@ -6,7 +6,7 @@ STD = c90
 CFLAGS = -fdiagnostics-color=always -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Wformat=2 -Wnull-dereference -Wstrict-prototypes -Wmissing-prototypes -Wcast-align -Wpointer-arith -Wundef -funroll-loops -flto -mtune=native -march=native -fPIE -pie -fstack-protector-all -O3
 INCLUDES = -I./C-Utils/include
 LIBS = -lm
-SRCS = ../src/Main.c ./C-Utils/include/C-Utils/cutils.c
+SRCS = ../src/Main.c ./C-Utils/include/C-Utils/cutils.c ./C-Utils/include/C-Utils/mutils.c
 OBJS =
 
 all:
