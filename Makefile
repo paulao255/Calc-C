@@ -1,5 +1,5 @@
 PROG_NAME = Ccalc
-VERSION = 2026-04-07
+VERSION = 2026-04-14
 
 CC = gcc
 STD = c90
